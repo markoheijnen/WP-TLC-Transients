@@ -139,6 +139,12 @@ class TLC_Transient {
 		delete_transient( 'tlc_up__' . $this->key );
 	}
 
+	public function delete() {
+		delete_transient( 'tlc__' . $this->key );
+
+		return $this;
+	}
+
 	public function spawn_server() {
 		$server_url = home_url( '/?tlc_transients_request' );
 		wp_remote_post( $server_url, array( 'body' => array( '_tlc_update' => $this->lock, 'key' => $this->raw_key ), 'timeout' => 0.01, 'blocking' => false, 'sslverify' => apply_filters( 'https_local_ssl_verify', true ) ) );

@@ -14,6 +14,9 @@ class TLC_Transient_Update_Server {
 			$update = get_transient( 'tlc_up__' . md5( $_POST['key'] ) );
 
 			if ( $update && $update[0] == $_POST['_tlc_update'] ) {
+				ignore_user_abort(true);
+				set_time_limit(0);
+
 				tlc_transient( $update[1] )
 						->expires_in( $update[2] )
 						->extend_on_fail( $update[5] )

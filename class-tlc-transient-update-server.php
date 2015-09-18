@@ -1,6 +1,7 @@
 <?php
 
 class TLC_Transient_Update_Server {
+
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9999 );
 	}
@@ -11,6 +12,7 @@ class TLC_Transient_Update_Server {
 				&& isset( $_POST['key'] )
 		) {
 			$update = get_transient( 'tlc_up__' . md5( $_POST['key'] ) );
+
 			if ( $update && $update[0] == $_POST['_tlc_update'] ) {
 				tlc_transient( $update[1] )
 						->expires_in( $update[2] )
@@ -22,4 +24,5 @@ class TLC_Transient_Update_Server {
 			exit();
 		}
 	}
+
 }

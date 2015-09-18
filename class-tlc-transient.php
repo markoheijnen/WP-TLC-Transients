@@ -56,7 +56,7 @@ class TLC_Transient {
 				$this->extend_on_fail
 			);
 
-			set_transient( 'tlc_up__' . $this->key, $task, 300 );
+			set_transient( 'tlc_up__' . $this->key, $task, 5 * MINUTE_IN_SECONDS );
 			add_action( 'shutdown', array( $this, 'spawn_server' ) );
 		}
 
